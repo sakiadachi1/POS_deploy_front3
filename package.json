@@ -6,10 +6,11 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start -p $PORT",
+    "start": "cross-env PORT=3000 next start -p 3000",
     "lint": "eslint ."
   },
   "dependencies": {
+    "cross-env": "^7.0.3",
     "next": "^14.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -23,5 +24,4 @@
     "typescript": "^5.2.2"
   },
   "license": "MIT"
-
 }
