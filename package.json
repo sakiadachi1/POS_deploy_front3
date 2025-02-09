@@ -6,9 +6,9 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "cross-env PORT=3000 next start -p 3000",
-    "lint": "eslint ."
+    "start": "cross-env PORT=3000 next start -p 3000"
   },
+
   "dependencies": {
     "cross-env": "^7.0.3",
     "next": "^14.0.0",
