@@ -1,6 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-    output: "standalone", // Azure 環境で必須
+    output: "standalone",
   };
   
   export default nextConfig;
