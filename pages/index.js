@@ -6,20 +6,28 @@ export default function POSApp() {
     const [cart, setCart] = useState([]);
     const [total, setTotal] = useState(0);
 
-    const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://127.0.0.1:8000";
+    const API_URL = process.env.NEXT_PUBLIC_API_URL;
+    if (!API_URL) {
+        throw new Error("環境変数 NEXT_PUBLIC_API_URL が設定されていません");
+    }
 
     const fetchProduct = async () => {
         try {
-            const res = await fetch(`${API_URL}/product/${code}`);
+            const res = await fetch(`${API_URL}/product/${code}`, { method: "GET" });
+            
             if (!res.ok) {
+                if (res.status === 404) {
                 throw new Error("商品が見つかりません");
             }
+            throw new Error(`エラーが発生しました: ${res.status}`);
+        }
             const data = await res.json(); 
             setProduct(data.product);
         } catch (error) {
-            alert(error.message);
-        }
-    };
+            console.error("APIエラー:", error);
+        alert("商品情報の取得に失敗しました。ネットワーク接続を確認してください。");
+    }
+};
 
     const addToCart = () => {
         if (product) {
@@ -71,7 +79,7 @@ export default function POSApp() {
             });
     
             if (!res.ok) {
-                throw new Error("購入処理に失敗しました");
+                throw new Error(`購入処理に失敗しました (HTTP ${res.status})`);
             }
     
             const data = await res.json();
