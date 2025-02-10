@@ -6,13 +6,15 @@ export default function POSApp() {
     const [cart, setCart] = useState([]);
     const [total, setTotal] = useState(0);
 
+    const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://127.0.0.1:8000";
+
     const fetchProduct = async () => {
         try {
-            const res = await fetch(`http://127.0.0.1:8000/product/${code}`);
+            const res = await fetch(`${API_URL}/product/${code}`);
             if (!res.ok) {
                 throw new Error("商品が見つかりません");
             }
-            const data = await res.json();
+            const data = await res.json(); 
             setProduct(data.product);
         } catch (error) {
             alert(error.message);
@@ -62,7 +64,7 @@ export default function POSApp() {
     
             console.log("送信データ:", JSON.stringify(purchaseData, null, 2));
     
-            const res = await fetch("http://127.0.0.1:8000/purchase", {
+            const res = await fetch(`${API_URL}/purchase`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(purchaseData),
