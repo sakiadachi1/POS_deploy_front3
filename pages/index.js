@@ -11,6 +11,9 @@ export default function POSApp() {
         throw new Error("環境変数 NEXT_PUBLIC_API_URL が設定されていません");
     }
 
+    console.log("環境変数 NEXT_PUBLIC_API_URL:", process.env.NEXT_PUBLIC_API_URL);
+
+
     const fetchProduct = async () => {
         try {
             const res = await fetch(`${API_URL}/product/${code}`, { method: "GET" });
