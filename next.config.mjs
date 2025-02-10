@@ -1,10 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-    output: "standalone",
-    experimental: {
-      appDir: true,
-    }
-  };
-  
-  export default nextConfig;
-  
+  output: "standalone",
+};
+
+export default nextConfig;
